@@ -27,7 +27,7 @@ cd fluxsd
 ```
 
 #### 2. 配置.env
-打开.env文件，修改以下配置项：
+把.env.example复制为.env文件，打开.env文件，修改以下配置项：
 ```php
 APP_HOST={你的计算机IP地址}
 ```

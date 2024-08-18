@@ -1,6 +1,5 @@
 <?php
 use Illuminate\Validation\Rule;
-//提交验证规则集合:引擎-> 操作 -> 规则
 return [
     'om' => [
         'generate'=> [
