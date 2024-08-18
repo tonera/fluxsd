@@ -90,7 +90,7 @@ function statusTimer() {
 async function show_deposits(e){
     // console.log(e);
     let res = await aiHttpRequest('get', "/api/partjob/deposits");
-    console.log(res);
+    // console.log(res);
     if(res != null && res.code == 1){
         rewardsList.value = res.data;
     }else{

@@ -8,7 +8,7 @@ import { usePage } from '@inertiajs/vue3';
 const props = defineProps(['ai_config','config_options','clientConfig']);
 const aiConfig = reactive(props.ai_config);
 const page = usePage();
-console.log(page.props.auth.user.is_admin);
+// console.log(page.props.auth.user.is_admin);
  
 const state = reactive({
     configOption:'engine',
@@ -111,7 +111,7 @@ function getGPUInfo() {
 }
  
 var gpuInfo = getGPUInfo();
-console.log(gpuInfo);
+// console.log(gpuInfo);
 
 </script>
 

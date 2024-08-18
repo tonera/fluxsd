@@ -15,7 +15,7 @@ createInertiaApp({
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
         
-        console.log(props.initialPage.props.locale);
+        // console.log(props.initialPage.props.locale);
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(i18nVue, {

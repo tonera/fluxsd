@@ -38,7 +38,7 @@ var currentModel = ref({download_url:null, type:null});
 
 onMounted(()=>{
     loadData(1);
-    SSEListen();
+    // SSEListen();
 });
 onUnmounted(() => {
     SSEClose();
@@ -238,13 +238,13 @@ const SSEListen = ()=>{
 
     });
 
-    // evtSource.addEventListener("error", (e) => {
-    //     console.log("Error: " + e.message);
-    // });
+    evtSource.addEventListener("error", (e) => {
+        console.log("Error: " + e.message);
+    });
 
-    // evtSource.addEventListener("notice", (e) => {
-    //     console.log("Notice: " + e.data);
-    // });
+    evtSource.addEventListener("notice", (e) => {
+        console.log("Notice: " + e.data);
+    });
 }
 
 </script>

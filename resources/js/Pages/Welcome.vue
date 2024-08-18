@@ -31,7 +31,7 @@ var imageList = [
     {src:'/images/mj.jpg', alt:''},
     {src:'/images/show-4.jpg', alt:''}
 ];
-var currentIndex = 0;
+var currentIndex = Math.floor(Math.random() * imageList.length);
 const currentDisplayImage = ref(imageList[currentIndex]);
 function showImage(index) {
     currentDisplayImage.value = imageList[index];
@@ -39,7 +39,7 @@ function showImage(index) {
 
 function nextImage() {
     currentIndex = (currentIndex + 1) % imageList.length;
-    console.log('currentIndex=',currentIndex);
+    // console.log('currentIndex=',currentIndex);
     showImage(currentIndex);
 }
 
