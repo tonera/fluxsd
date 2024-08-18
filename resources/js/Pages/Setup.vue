@@ -23,10 +23,10 @@ if(page.props.languages != null){
 }
 
 const params = reactive({
-    name:'aaa',
-    email:'aaa1@qq.com',
-    password:'pppppppp',
-    password_confirmation:'pppppppp',
+    name:'',
+    email:'',
+    password:'',
+    password_confirmation:'',
     processing:false,
     access_url:window.location.protocol + '//' + props.localIp + ':' + props.localPort,
     atz_token:"",
