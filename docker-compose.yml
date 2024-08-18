@@ -1,0 +1,48 @@
+services:
+  nginx: #nginx contanier
+    image: nginx:1.19.9 
+    container_name: web
+    restart: always
+    ports:  #map to 8000
+      - 8000:80
+    volumes: 
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf 
+      - ./nginx/conf.d:/etc/nginx/conf.d 
+      - ./:/var/www 
+      - ./logs:/var/log
+  php: 
+    container_name: php
+    restart: always
+    build: ./ #Dockerfile
+    volumes:
+      - ./:/var/www
+      - ./php/php.ini:/etc/php83/php.ini #./php/php.ini
+      - ./php/www.conf:/etc/php83/php-fpm.d/www.conf  
+      - ./php/php-fpm.conf:/etc/php83/php-fpm.conf
+      - ./logs:/var/log
+    ports:
+      - 9000:9000   #php-fpm
+      - 8080:8080   #ws server
+  mariadb:
+    image: mariadb:10.9
+    container_name: db
+    restart: always
+    volumes:
+      - ./mysql/data:/var/lib/mysql 
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf 
+      - ./mysql/init:/docker-entrypoint-initdb.d/
+      - ./logs:/var/log
+    ports: 
+      - 3308:3306 #3308
+    environment:
+      MYSQL_DATABASE: "fluxsd"
+      MYSQL_USER: "fluxsd"
+      MYSQL_PASSWORD: "fluxsdpasswd"
+      MYSQL_ROOT_PASSWORD: "fluxsdpasswd"
+  redis:
+    image: redis:6.2.14-alpine
+    container_name: redis
+    command: redis-server --requirepass Aibox_EIt2YXczexjl4
+    restart: always
+    ports: 
+      - 6379:6379

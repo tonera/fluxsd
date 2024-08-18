@@ -1,0 +1,13 @@
+Types: deb
+# http://snapshot.debian.org/archive/debian/20240423T150000Z
+URIs: https://mirrors.tuna.tsinghua.edu.cn/debian
+Suites: bookworm bookworm-updates
+Components: main
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb
+# http://snapshot.debian.org/archive/debian-security/20240423T150000Z
+URIs: https://mirrors.tuna.tsinghua.edu.cn/debian-security
+Suites: bookworm-security
+Components: main
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
