@@ -5,7 +5,7 @@
 
 ## Open Source AIGC Workstation
 
-FluxSD ([https://fluxsd.com](https://fluxsd.com)) is an open source AIGC platform for graphics and text built with PHP+Nginx+Python+Redis+Mysql. With this platform, you can use the GPU computing power of your local computer to build a Stable diffution image generation system locally. You can also share your GPU computing power for others to use. In addition, this platform also integrates the latest Midjourney, Stable Diffution, Llama3.1 and other large model APIs. Even if your local computer does not have a GPU, you can generate content by calling FluxSD.com or other official APIs. The main features are as follows:
+FluxSD ([https://fluxsd.com](https://fluxsd.com)) is an open source AIGC platform for image and text built with PHP+Nginx+Python+Redis+Mysql. With this platform, you can use the GPU computing power of your local computer to build a Stable diffution image generation system locally. You can also share your GPU computing power for others to use. In addition, this platform also integrates the latest Midjourney, Stable Diffution, Llama3.1 and other large model APIs. Even if your local computer does not have a GPU, you can generate content by calling FluxSD.com or other official APIs. The main features are as follows:
 
 - Completely open source, built with PHP+Nginx+Mysql+Redis+Laravel11.
 
@@ -17,9 +17,9 @@ FluxSD ([https://fluxsd.com](https://fluxsd.com)) is an open source AIGC platfor
 
 - Support Llama3.1.
 
-- Support custom download community image generation model.
+- Support download community model.
 
-- Support image portfolio management.
+- Support image management and edit.
 
 - Support simple and fast editing of images (cropping, rotation, format conversion, background removal, resolution enhancement, etc.)
 

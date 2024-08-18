@@ -72,8 +72,8 @@ if(page.props.languages != null){
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
                     <div class="flex lg:justify-center col-span-2 items-center gap-5">
-                        <img class="object-cover w-16 rounded-2xl" src="https://FluxSD.com/images/logo.png" alt="FluxSD.com logo"/>
-                        <div class="font-bold text-5xl text-slate-600">{{appName}}</div>
+                        <a href="https://fluxsd.com"><img class="object-cover w-16 rounded-2xl" src="https://FluxSD.com/images/logo.png" alt="FluxSD.com logo"/></a>
+                        <div class="font-bold text-5xl text-slate-600"><a href="https://fluxsd.com">{{appName}}</a></div>
                         <div class="text-slate-500 pt-5">{{trans('apixel_short_title')}}</div>
                     </div>
 
@@ -160,7 +160,7 @@ if(page.props.languages != null){
                                             <h2 class="text-xl font-semibold text-black dark:text-white">{{trans('Documentation')}}</h2>
 
                                             <p class="mt-4 text-sm/relaxed">
-                                                Laravel has wonderful documentation covering every aspect of the framework. Whether you are a newcomer or have prior experience with Laravel, we recommend reading our documentation from beginning to end.
+                                                FluxSD is an open source AIGC platform for image and text built with PHP+Nginx+Python+Redis+Mysql. With this platform, you can use the GPU computing power of your local computer to build a Stable diffution image generation system locally. You can also share your GPU computing power for others to use. In addition, this platform also integrates the latest Midjourney, Stable Diffution, Llama3.1 and other large model APIs. Even if your local computer does not have a GPU, you can generate content by calling FluxSD.com or other official APIs.
                                             </p>
                                         </div>
                                     </div>
@@ -169,6 +169,8 @@ if(page.props.languages != null){
                                 </div>
                             </a>
                         </div>
+
+                        
 
 
                         <a
@@ -253,8 +255,8 @@ if(page.props.languages != null){
                     </div>
                 </main>
 
-                <div class="p-10 text-center">
-                    <a data-sveltekit-preload-data="" href="/docs/install/" class="btn btn-neutral group w-60 rounded-full px-12">Github <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hidden h-6 w-6 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1 md:inline-block"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg></a>
+                <div class="py-10 text-center">
+                    <a href="https://github.com/tonera/fluxsd" class="btn btn-neutral group w-60 rounded-full">Github <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hidden h-6 w-6 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1 md:inline-block"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg></a>
                 </div>
 
                 <hr>
