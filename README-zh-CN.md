@@ -1,7 +1,7 @@
 # FluxSD
 ![FluxSD.com](assets/home.jpeg)
 
-## <div align="center"><b><a href="README.md">English</a> | <a href="README_zh-CN.md">简体中文</a></b></div>
+## <div align="center"><b><a href="README.md">English</a> | <a href="README-zh-CN.md">简体中文</a></b></div>
 
 ## 开源私有AIGC工作站
 
