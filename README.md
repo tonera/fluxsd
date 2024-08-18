@@ -7,24 +7,24 @@
 
 FluxSD ([https://fluxsd.com](https://fluxsd.com)) is an open source AIGC platform for graphics and text built with PHP+Nginx+Python+Redis+Mysql. With this platform, you can use the GPU computing power of your local computer to build a Stable diffution image generation system locally. You can also share your GPU computing power for others to use. In addition, this platform also integrates the latest Midjourney, Stable Diffution, Llama3.1 and other large model APIs. Even if your local computer does not have a GPU, you can generate content by calling FluxSD.com or other official APIs. The main features are as follows:
 
--- Completely open source, built with PHP+Nginx+Mysql+Redis+Laravel11.
+- Completely open source, built with PHP+Nginx+Mysql+Redis+Laravel11.
 
--- Support Docker orchestration, fast and large-scale deployment.
+- Support Docker orchestration, fast and large-scale deployment.
 
--- Call the Midjourney official interface through Discord's API to achieve Midjourney function integration.
+- Call the Midjourney official interface through Discord's API to achieve Midjourney function integration.
 
--- Support the latest Stable Diffution 3.
+- Support the latest Stable Diffution 3.
 
--- Support Llama3.1.
+- Support Llama3.1.
 
--- Support custom download community image generation model.
+- Support custom download community image generation model.
 
--- Support image portfolio management.
+- Support image portfolio management.
 
--- Support simple and fast editing of images (cropping, rotation, format conversion, background removal, resolution enhancement, etc.)
+- Support simple and fast editing of images (cropping, rotation, format conversion, background removal, resolution enhancement, etc.)
 
 
-##### FluxSD is committed to building a localized private AIGC graphics and text system.
+##### FluxSD is committed to building a localized private AIGC image and text system.
 
 ![FluxSD.com](assets/banner.jpg)
 
@@ -57,6 +57,7 @@ Open the url in your browser:[http://{Your ip address}:8000](https://localhost.c
 - If you do not have a graphics card that meets the requirements, <b>please do not install the Generator, just use the API directly.</b>
 - Generator only supports Nvidia series graphics cards.
 - Supports Linux and Windows OS (Include WSL).
+- Make sure your computer has installed the CUDA driver
 
 #### 1. Install Python 3.11
 The methods for each operating system are slightly different, please search them yourself.

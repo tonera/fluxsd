@@ -48,6 +48,7 @@ docker compose up
 - 如果没有符合要求的显卡，<b>请不要安装生成器，直接使用API即可。</b>
 - 生成器仅支持Nvidia系列显卡
 - 支持Linux和Windows操作系统（以及WSL）
+- 确认你的计算机已安装好CUDA驱动
 
 #### 1. 安装Python 3.11
 必须是python3.11，各种操作系统方法略有不同，请自行查找。
