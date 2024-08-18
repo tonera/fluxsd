@@ -11,9 +11,9 @@ services:
       - ./:/var/www 
       - ./logs:/var/log
   php: 
+    image: tonera/fluxsd:latest
     container_name: php
     restart: always
-    build: ./ #Dockerfile
     volumes:
       - ./:/var/www
       - ./php/php.ini:/etc/php83/php.ini #./php/php.ini
