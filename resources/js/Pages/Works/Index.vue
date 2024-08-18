@@ -44,7 +44,7 @@ function handleSelecte(item){
     
 }
 async function handleButton(btn, value){
-    console.log(btn , value);
+    // console.log(btn , value);
     //delete img
     if(btn == 'crop'){
         work_image.value = value;
