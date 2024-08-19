@@ -56,7 +56,15 @@ class Common{
     }
 
     public static function getAccessUrl(string $storage){
-        return self::getConfigKeyValue('storage.'.$storage.'.access_url')?? env('APP_URL').'/';
+        $access_url = self::getConfigKeyValue('storage.'.$storage.'.access_url');
+        if($access_url){
+            if(substr($access_url, -1) != '/'){
+                $access_url = $access_url.'/';
+            }
+        }else{
+            $access_url = env('APP_URL').'/';
+        }
+        return $access_url;
     }
 
     public static function getOnlyActiveConfig(string $key)
