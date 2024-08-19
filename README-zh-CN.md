@@ -21,13 +21,12 @@ FluxSD（[https://fluxsd.com](https://fluxsd.com)）是一款开源的、由PHP+
 
 ## 安装
 
-#### 前置要求：请先确保你的计算机已安装了[docker](https://www.docker.com/) , [git](https://git-scm.com/)和[composer](https://getcomposer.org/)
+#### 前置要求：请先确保你的计算机已安装了[docker](https://www.docker.com/) , [git](https://git-scm.com/)
 
 #### 1. 克隆项目到本地
 ```shell
 git clone https://github.com/tonera/fluxsd.git
 cd fluxsd
-composer install
 ```
 
 #### 2. 配置.env
@@ -37,7 +36,7 @@ APP_HOST={你的计算机IP地址}
 ```
 #### 3. 启动
 ```shell
-docker compose up
+docker-compose up
 ```
 #### 4. 使用
 在浏览器地址栏输入:[http://{你的计算机IP地址}:8000](http://localhost:8000) 访问Fluxsd系统。

@@ -30,13 +30,12 @@ FluxSD ([https://fluxsd.com](https://fluxsd.com)) is an open source AIGC platfor
 
 ## Installation
 
-#### Prerequisites: Please make sure that [docker](https://www.docker.com/) , [git](https://git-scm.com/) and [composer](https://getcomposer.org/) is installed on your computer.
+#### Prerequisites: Please make sure that [docker](https://www.docker.com/) and [git](https://git-scm.com/) is installed on your computer.
 
 #### 1. Clone the repo 
 ```shell
 git clone https://github.com/tonera/fluxsd.git
 cd fluxsd
-composer install
 ```
 
 #### 2. Edit config file .env
@@ -46,7 +45,7 @@ APP_HOST={Your ip address}
 ```
 #### 3. Startup
 ```shell
-docker compose up
+docker-compose up
 ```
 #### 4. Usage
 Open the url in your browser:[http://{Your ip address}:8000](http://localhost:8000)

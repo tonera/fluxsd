@@ -119,7 +119,7 @@ var gpuInfo = getGPUInfo();
     <AppLayout title="Config Panel">
  
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-2">
-        <div class="grid ">
+        <div class="flex justify-between items-center">
             <div role="tablist" class="tabs tabs-boxed tabls-sm justify-self-start min-w-96">
                 <a 
                     v-for="(item, index) in props.config_options" 
@@ -129,6 +129,9 @@ var gpuInfo = getGPUInfo();
                     role="tab" 
                     class="tab">{{item.label}}
                 </a>
+            </div>
+            <div class="">
+                <a class="link link-secondary no-underline stat-title font-bold" href="https://fluxsd.com/docs" target="_blank">帮助</a>
             </div>
         </div>
 

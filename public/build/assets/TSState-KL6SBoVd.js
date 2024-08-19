@@ -1,0 +1,1 @@
+import{p as e}from"./app-DEtDzQpV.js";e({act:"MK",engine:"atz",steps:30,seed:0,cfg_scale:7,prompt:"",negative_prompt:"",width:768,height:1024,model_hash_id:"3af8e8198954317e706b306f6817ca35",image_num:2,upscale:2,task_id:"",prompt_en:"",negative_prompt_en:"",short_name:""});e({id:"",show_url:"",thumb:"",uri:"",width:0,height:0,seed:0,buttonGroups:[]});
