@@ -49,7 +49,7 @@ APP_HOST={Your ip address}
 docker compose up
 ```
 #### 4. Usage
-Open the url in your browser:[http://{Your ip address}:8000](https://localhost:8000)
+Open the url in your browser:[http://{Your ip address}:8000](http://localhost:8000)
 
 ## Ai Image Generator（Optional）
 - AI Image Generator (hereinafter referred to as Generator) is an optional installation item.

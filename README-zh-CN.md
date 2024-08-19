@@ -40,7 +40,7 @@ APP_HOST={你的计算机IP地址}
 docker compose up
 ```
 #### 4. 使用
-在浏览器地址栏输入:[http://{你的计算机IP地址}:8000](https://localhost:8000) 访问Fluxsd系统。
+在浏览器地址栏输入:[http://{你的计算机IP地址}:8000](http://localhost:8000) 访问Fluxsd系统。
 
 ## AI图片生成器安装（可选）
 - AI图片生成器（以下简称生成器）是<b>可选安装项</b>。
