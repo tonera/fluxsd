@@ -3,7 +3,6 @@
 /public/hot
 /public/storage
 /public/atzoss
-/public/images
 /storage/*.key
 .env
 .env.backup
