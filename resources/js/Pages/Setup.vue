@@ -28,7 +28,7 @@ const params = reactive({
     password:'',
     password_confirmation:'',
     processing:false,
-    access_url:window.location.protocol + '//' + props.localIp + ':' + props.localPort,
+    access_url:window.location.protocol + '//' + props.localIp + ':' + props.localPort + '/',
     atz_token:"",
     together_token:""
 });
