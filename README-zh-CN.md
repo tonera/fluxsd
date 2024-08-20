@@ -66,11 +66,22 @@ python -m venv .venv
 ##### Windows系统使用以下命令
 ```
 python -m venv .venv
-.venv/Script/activate
+.venv\Scripts\activate
 ```
 #### 4. 安装生成器
 ```
-pip install -r requirement.txt
+pip install -r requirement.txt -i https://mirrors.aliyun.com/pypi/simple
+```
+
+##### <div style="color: red;">注意：因为其中一个软件包的bug，所以请务必修改生成器目录下</div>
+.venv\Lib\site-packages\basicsr\data\degradations.py
+将第8行
+```python
+from torchvision.transforms.functional_tensor import rgb_to_grayscale
+```
+改为:
+```python
+from torchvision.transforms.functional import rgb_to_grayscale
 ```
 
 #### 5. 安装Torch

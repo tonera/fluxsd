@@ -77,11 +77,22 @@ python -m venv .venv
 ##### Use the following command in Windows OS 
 ```
 python -m venv .venv
-.venv/Script/activate
+.venv\Scripts\activate
 ```
 #### 4. Install Generator
 ```
 pip install -r requirement.txt
+```
+
+##### <div style="color: red;">Attention：Because of a bug in one of the packages, be sure to modify the Generator directory:</div>
+.venv\Lib\site-packages\basicsr\data\degradations.py
+at line 8
+```python
+from torchvision.transforms.functional_tensor import rgb_to_grayscale
+```
+Be changed to:
+```python
+from torchvision.transforms.functional import rgb_to_grayscale
 ```
 
 #### 5. Install Torch
