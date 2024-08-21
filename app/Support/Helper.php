@@ -274,6 +274,38 @@ class Helper{
             return $next_multiple;
         }
     }
+
+    public static function isEnglish($string)
+    {
+        // Removing html tags
+        $string = strip_tags($string);
+
+        // Removing html entities
+        $string = preg_replace('/&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-fA-F]{1,6});/is', '', $string);
+        
+        // Removing symbols
+        $string = preg_replace('/[-!$%^&*()_+|~=`{}\[\]:";\'<>?,.\/#’—-–]/si', '', $string);
+
+        // Removing spaces
+        $string = preg_replace('/\s+/si', '', $string);
+        
+        // Counting english characters
+        preg_match_all('/\w+/si', $string, $english_match);
+        $english_char = strlen(implode('', $english_match[0]));
+
+        // Counting non english characters
+        preg_match_all('/\W+/si', $string, $match);
+        $non_english_char = strlen(implode('', $match[0]));
+
+        // Checks if number of english characters are grater
+
+        if ($english_char > $non_english_char)
+        {
+            return true;
+        }
+
+        return false;
+    }
     
 }
 ?>

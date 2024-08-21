@@ -62,7 +62,9 @@ if(cacheString != null){
         model_name:null,
         lora_name:null,
         prompt: null,
+        prompt_en:null,
         negative_prompt: null,
+        negative_prompt_en:null,
         // style:null,
         asp_id:0,
         niji:null,
@@ -172,6 +174,10 @@ function tsComCallback(name, value){
             params.height = parseInt(asp.height * modelSizeRatio) ;
             // console.log('params=',params);
         break;
+        case 'prompt':
+            params[name] = value;
+            params.prompt_en = null;
+            break;
         default:
             params[name] = value;
     }
@@ -277,6 +283,8 @@ async function Summit(){
         settime('ok');
         // console.log('taskRunTime=',taskRunTime);
         task_id = res.data.task_id;
+        params.prompt_en = res.data.prompt_en;
+        params.negative_prompt_en = res.data.negative_prompt_en;
         connectTaskWs(res.data.task_id);
         waitingImageNum.value = res.data.image_num;
         //rewrite init_img_path 

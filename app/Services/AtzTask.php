@@ -14,7 +14,9 @@ class AtzTask{
         $input = $req->package();
         $extraKeys = ['upscale', 'enable_freeu', 'face_enhance','lora_scale','crop_face','big', 'thumb','file_type','generate_type'
         ,'file_size','model_version','float16','image_num','job_type'];
-        $task_pkg = [];
+        $task_pkg = [
+            'locale' => env('APP_LOCALE')   //which storage received image saved in oss or s3
+        ];
         foreach($extraKeys as $key){
             if(isset($input[$key]) && $input[$key] !== null){
                 $task_pkg[$key] = $input[$key];
@@ -22,7 +24,7 @@ class AtzTask{
         }
         $input['task_pkg'] = json_encode($task_pkg);
         
-        Alogd::write("AtzTask::create", "ATZ绘画开始,创建任务:{$input['task_id']} {$input['act']}");
+        Alogd::write("AtzTask::create", "ATZ绘画开始,创建任务:{$input['task_id']} {$input['act']} {$task_pkg['locale']}");
 
         try{
             $task = TaskService::createTask($input);

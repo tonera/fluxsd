@@ -40,6 +40,7 @@ class AtzProgress implements ShouldQueue
         switch($this->task->act){
             case 'MK':
                 $api = '/v1/generate';
+                $task_pkg = json_decode($this->task->task_pkg);
                 $body = json_encode([
                     'prompt' => $this->task->prompt_en,
                     'negative_prompt' => $this->task->negative_prompt_en??'',
@@ -55,6 +56,7 @@ class AtzProgress implements ShouldQueue
                     'negative_prompt' => $this->task->negative_prompt,
                     'image_num' => $this->task->image_num,
                     'reference_id' => $this->task->task_id,
+                    'locale' => $task_pkg->locale??'en',
                 ], JSON_PRETTY_PRINT);
             break;
             case 'RBG':

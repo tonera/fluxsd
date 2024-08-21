@@ -11,9 +11,8 @@ use Google\Cloud\Translate\V2\TranslateClient;
 class TranslateService{
     public static function translate(array $config, array $arr){
         $cnServicies = ['aliyun'];
-        if(isset($config['translate.tuse.is_active']) && $config['translate.tuse.is_active']){
-            //call tuse translate api
-        }elseif(app()->getLocale() == 'zh'){
+        if(env('APP_LOCALE') == 'zh'){
+            // Log::emergency("aliyun翻译");
             if(isset($config['translate.aliyun.is_active']) && $config['translate.aliyun.is_active']){
                 $accessKey = $config['translate.aliyun.access_key']??null;
                 $accessSecret = $config['translate.aliyun.secret_key']??null;
@@ -33,6 +32,7 @@ class TranslateService{
             }
         }else{
             //try google
+            // Log::emergency("Google翻译");
             if(isset($config['translate.google.is_active']) && $config['translate.google.is_active']){
                 if(isset($config['translate.google.access_key']) && $config['translate.google.access_key']){
                     return self::GoogleTrans( $config, $arr);

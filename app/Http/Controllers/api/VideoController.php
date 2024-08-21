@@ -61,6 +61,7 @@ class VideoController extends Controller
                     'user_id' => 2,
                 ]));
                 $taskData = $req->package(['request_id' => $json['id']]);
+                $taskData['task_pkg'] = json_encode($input);
                 $task = TaskService::createTask($taskData);       
                 SdVideoProgress::dispatch($task)->delay(Carbon::now()->addSeconds(15));
 

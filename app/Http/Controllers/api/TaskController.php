@@ -57,16 +57,16 @@ class TaskController extends Controller
             $promptEn = $arr[0];
             $negativePromptEn = $promptEn??'';
         }else{
-            if(Helper::isHanzi($req->prompt) || Helper::isHanzi($req->negative_prompt)){
-                Alogd::write("TaskController", 'Prompt is chinese, translate:'.$req->prompt);
-                $appConfig = Common::getConfigKeyValue();
-                $transPrompts = TranslateService::translate($appConfig , [$req->prompt??'', $req->negative_prompt??'']);
-
-                $promptEn = $transPrompts[0];
-                $negativePromptEn = $transPrompts[1]??'';
-            }else{
+            if(Helper::isEnglish($req->prompt) || Helper::isEnglish($req->negative_prompt)){
                 $promptEn = $req->prompt;
                 $negativePromptEn = $req->negative_prompt??'';
+                Alogd::write("TaskController", 'Prompt is english:'.$promptEn);
+            }else{
+                $appConfig = Common::getConfigKeyValue();
+                $transPrompts = TranslateService::translate($appConfig , [$req->prompt??'', $req->negative_prompt??'']);
+                $promptEn = $transPrompts[0];
+                $negativePromptEn = $transPrompts[1]??'';
+                Alogd::write("TaskController", 'Prompt is chinese, translate result:'.$promptEn);
             }
         }
         $req->prompt_en = substr($promptEn,0,800);

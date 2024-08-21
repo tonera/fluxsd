@@ -22,7 +22,7 @@ class TaskService{
     public static function createTask(array $params){
         $params['idx_prompt'] = md5($params['prompt_en']??'');
         $params['work_status'] = GlobalCode::TASK_CREATE;
-        $params['task_pkg'] = json_encode($params);
+        // $params['task_pkg'] = json_encode($params);
       
         $exTask = Task::where('task_id', $params['task_id'])->first();
         if($exTask != null){
