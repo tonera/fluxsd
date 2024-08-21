@@ -22,7 +22,7 @@ class ImageController extends Controller
         $listEngines = $configArr['engine']??[];
         $engines = [];
         foreach($listEngines as $key => $val){
-            if($val['is_active'] == 1){
+            if(isset($val['is_active']) && $val['is_active'] == 1){
                 $engines[] = [
                     'label' => __($key),
                     'engine' => $key
