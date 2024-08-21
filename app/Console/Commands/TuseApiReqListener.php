@@ -35,7 +35,7 @@ class TuseApiReqListener extends Command
         $token = Common::getConfigKeyValue('engine.atz.token');
         if(!$token){
             echo "Token is null\n";
-            sleep(3);
+            sleep(10);
             return;
         }
         
@@ -44,19 +44,19 @@ class TuseApiReqListener extends Command
         while (true) {
             $cacheKey = config('public.partjob_status_key');
             $onlineStatus = Cache::get($cacheKey);
-            Alogd::write('TuseApiReqListener', "onlineStatus={$onlineStatus}", self::OUTPUT);
+            // Alogd::write('TuseApiReqListener', "onlineStatus={$onlineStatus}", self::OUTPUT);
             if($onlineStatus != 'online'){
                 echo "Part job status is offline\n";
-                sleep(2);
                 if($client != null){
                     $client->disconnect();
                 }
+                sleep(2);
                 $client = null;
                 continue;
             }else{
                 if(!$client){
-                    echo "Connect to :ws://".env('WSTS_HOST').":".env('WS_REQ_PORT')."/?token={$token}\n";
-                    $client = new \WebSocket\Client("ws://".env('WSTS_HOST').":".env('WS_REQ_PORT')."/?token={$token}");
+                    echo "Connect to :".env('FLUXSD_API_WS_REQ')."/?token={$token}\n";
+                    $client = new \WebSocket\Client(env('FLUXSD_API_WS_REQ')."/?token={$token}");
                 }
             }
             try {

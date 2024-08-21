@@ -29,7 +29,7 @@ class TaskController extends Controller
         $activeConfig = Common::getOnlyActiveConfig('storage');
         $input['storage'] = $activeConfig['indexKey']??'local';
         Alogd::write("TaskController", "Create a new task, params:");
-        Alogd::write("TaskController", $input);
+        // Alogd::write("TaskController", $input);
 
         try{
             $req = new UnitRequest($input);

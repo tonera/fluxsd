@@ -180,7 +180,7 @@ class Helper{
         $execTime = $lastUsedTime - (time() - $startTime);
         $execTime = $execTime < 0 ? 30:$execTime;
         $execTime = $execTime * ($task->image_num??1);
-        Alogd::write(GlobalCode::COMMON, "{$usedTimeKey}缓存时间:{$execTime}");
+        // Alogd::write(GlobalCode::COMMON, "{$usedTimeKey}缓存时间:{$execTime}");
         $execTime = $execTime > 300 ? 0 : $execTime;
         return $execTime;
     }

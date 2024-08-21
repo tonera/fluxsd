@@ -25,11 +25,12 @@ class LocalTask{
             $channel = GlobalCode::CHANNEL_LIST[$input['job_type']];
 
             $list = $req->splitPackage($input, 1);
-            foreach($list as $val){
+            foreach($list as $idx => $val){
                 if($input['image_num'] > 1){
                     $val['seed'] = rand(1,4294967295);
                 }
                 $qStat = $redis->lpush($channel , json_encode($val));
+                Alogd::write("LocalTask::create", "lpush to redis:task_id={$input['task_id']}->{$idx} .LocalEngineListener wait to AI Client's response.");
             }
 
             if($qStat){

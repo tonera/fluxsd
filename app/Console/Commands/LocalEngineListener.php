@@ -121,7 +121,7 @@ class LocalEngineListener extends Command
         $execTime = 0;
         $task = Task::where('task_id', $message['task_id'])->first();
         if(!$task){
-            Alogd::write("LocalEngineListener", "task:{$message['task_id']} not found, drop the msg", $this->debug);
+            Alogd::write("LocalEngineListener", "\ntask:{$message['task_id']} not found, drop the msg", $this->debug);
             return;
         }
         try{
@@ -154,7 +154,7 @@ class LocalEngineListener extends Command
             $finishedImgNum = count($bigList);
             
             $this->saveImages = $this->getSaveImages($bigList , $message);
-            Alogd::write("LocalEngineListener", "images:".count($bigList).",wait to save:". count($this->saveImages), $this->debug);
+            // Alogd::write("LocalEngineListener", "images:".count($bigList).",wait to save:". count($this->saveImages), $this->debug);
             $finishedImgNum += count($this->saveImages);
     
             $this->saveTaskImages($this->saveImages , $task, $tm, $execTime);
@@ -231,7 +231,7 @@ class LocalEngineListener extends Command
             }
             
             ReverbClient::sendMessage($message);
-            Alogd::write("LocalEngineListener", "push image id={$taskImage->id}", $this->debug);
+            Alogd::write("LocalEngineListener", "push to ReverbClient :image id={$taskImage->id}", $this->debug);
         }
     }
 

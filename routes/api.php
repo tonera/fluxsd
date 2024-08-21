@@ -27,7 +27,7 @@ Route::middleware([
     Route::post('/config/active', [ConfigApiController::class, 'active']);
     Route::post('/models/download', [ModelController::class , 'download']);
     Route::delete('/models/{amModel}', [ModelController::class , 'destroy']);
-    // Route::get('/download/percent', [SSEController::class , 'downloadPercent']);//sse，负载太高，废弃
+    // Route::get('/download/percent', [SSEController::class , 'downloadPercent']);//sse
     Route::get('/download/progress', [SSEController::class , 'downloadProgress']);
 
     Route::post('/partjob/toggle', [PartJobController::class , 'toggle']);

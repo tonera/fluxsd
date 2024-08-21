@@ -36,15 +36,15 @@ class TuseApiResListener extends Command
             sleep(3);
             return;
         }
-        echo "ws://".env('WSTS_HOST').":".env('WSTS_PORT')."/?token={$token}\n";
-        $client = new \WebSocket\Client("ws://".env('WSTS_HOST').":".env('WSTS_PORT')."/?token={$token}", ['timeout'=>5]);
+        echo env('FLUXSD_API_WS_RES')."/?token={$token}\n";
+        $client = new \WebSocket\Client(env('FLUXSD_API_WS_RES')."/?token={$token}", ['timeout'=>5]);
     
         while (true) {
             try {
                 $message = $client->receive();               
                 echo "data length:". strlen($message) ."\n";
                 self::dispatch($message);
- 
+                sleep(1);
             } catch (\WebSocket\ConnectionException $e) {
                 // Possibly log errors
                 echo $e->getMessage()."\n";
@@ -58,6 +58,9 @@ class TuseApiResListener extends Command
         $isOutput = true;
         Alogd::write('TuseApiResListener', "Received msg from TSAPI WS server:", $isOutput);
         Alogd::write('TuseApiResListener', $content, $isOutput);
+        if(!$content){
+            return;
+        }
         try{
             $package = json_decode($content, true);
             $message = $package['body'];
@@ -93,10 +96,10 @@ class TuseApiResListener extends Command
         
             }else{
                 Alogd::write('TuseApiResListener', "Not found show_url , ephemeral msg.", $isOutput);
-                // $tm = new TuseMessage($message);
-                // $tm->validator();
-                // $execTime = Helper::getExecTime($task);
-                // ReverbClient::sendMessage($tm->package('ephemeral', $execTime));
+                $tm = new TuseMessage($message);
+                $tm->validator();
+                $execTime = Helper::getExecTime($task);
+                ReverbClient::sendMessage($tm->package('ephemeral', $execTime));
             }
             
 

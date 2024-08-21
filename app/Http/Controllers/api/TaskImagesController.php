@@ -21,7 +21,6 @@ class TaskImagesController extends Controller
      */
     public function index(Request $request)
     {
-        // //todo testing
         $userId = Auth::id();
 
         $list = TaskImage::where('user_id', $userId)->orderBy("created_at","desc")->paginate(30);
@@ -33,6 +32,10 @@ class TaskImagesController extends Controller
         });
         return (new TaskImageCollection($list))
             ->additional(['code' => GlobalCode::SUCCESS]);
+    }
+
+    public function show(TaskImage $image){
+        return 'bbbb387119c8a1f89aeac8093c13582c';
     }
 
     //works index
