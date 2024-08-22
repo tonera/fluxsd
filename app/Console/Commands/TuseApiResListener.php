@@ -95,11 +95,16 @@ class TuseApiResListener extends Command
                 Alogd::write('TuseApiResListener', "Download image, task_id:".$task->task_id." img={$message['show_url']} size=". strlen($imageBytes). " path=".$message['big'], $isOutput);
         
             }else{
-                Alogd::write('TuseApiResListener', "Not found show_url , ephemeral msg.", $isOutput);
+                $message_type = 'ephemeral';
+                if($message['status'] == 'failed'){
+                    $message_type = 'failed';
+                }
+                Alogd::write('TuseApiResListener', "Not found show_url , {$message_type} msg.", $isOutput);
+
                 $tm = new TuseMessage($message);
                 $tm->validator();
                 $execTime = Helper::getExecTime($task);
-                ReverbClient::sendMessage($tm->package('ephemeral', $execTime));
+                ReverbClient::sendMessage($tm->package($message_type, $execTime));
             }
             
 

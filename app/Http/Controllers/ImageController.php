@@ -48,6 +48,7 @@ class ImageController extends Controller
         }
         $list = $config[$engine];
         $ret = [];
+        $ret[] = ['label' => 'Default', 'val' => 'default'];
         foreach($list as $key => $value){
             $ret[] = ['label' => $value, 'val' => $value];
         }

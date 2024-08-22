@@ -21,7 +21,7 @@ const CON_DEFAULT_MODELXL_ID = '1TT5AVZLU3UO';
 const CON_DEFAULT_MODEL15 = 'v1-5'; //
 const CON_DEFAULT_MODEL15_ID = '1TT5AWACWDFK';
 const CON_PIXART_MODEL_NAME = 'pixart'; 
-const CON_DEFAULT_SCHEDULER = 'DDIM';
+// const CON_DEFAULT_SCHEDULER = '';
 const CON_SDXL_TAGS = ['sdxl','presdxl','presd3'];
 
 class UnitRequest{
@@ -49,7 +49,7 @@ class UnitRequest{
     public $face_enhance = CON_YES;     
     public $crop_face = CON_YES;       
     public $tpl_list = [];             
-    public $sampler_name = CON_DEFAULT_SCHEDULER;
+    public $sampler_name = null;
     public $weird;                  // mj 0-3000
     public $cref;                   // mj 1-100
     public $sref;                   // mj 1-10
@@ -96,6 +96,8 @@ class UnitRequest{
                 }
             }elseif($key == 'tpl_list' && !empty($val)){
                 $this->tpl_list = json_decode($val, true);
+            }elseif($key == 'sampler_name' && $val=='default'){
+                $this->sampler_name = null;
             }
         }
         $this->check();
@@ -345,7 +347,6 @@ class UnitRequest{
             'job_type' => $this->act,
             'method' =>  $this->generate_type == 'txt2img'?1:2,
             'image_num'=>  intval($this->image_num),
-            'sampler_name' => $this->sampler_name,
             'steps' => $this->steps,
             'cfg_scale' => $this->cfg_scale,
             'image_file2' => $this->image_file2,
@@ -377,6 +378,7 @@ class UnitRequest{
                         'mode' => $this->face_mode,
                         'enable_freeu' => $this->enable_freeu,//yes or no
                         'scheduler' => $this->sampler_name,
+                        'sampler_name' => $this->sampler_name,
                         'num_inference_steps' => intval($this->steps),
                         'guidance_scale' => floatval($this->cfg_scale),
                         'model_name' => $this->model_name,//
