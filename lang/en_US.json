@@ -210,5 +210,8 @@
     "Atz Token can not be null":"The access Token for FluxSD.com is not configured",
     "Not found the download url":"Not found the download url",
     "download_notice":"Please copy the downloaded model to the following directory:",
-    "Ai Image Generator is not running":"Ai Image Generator is not running"
+    "Ai Image Generator is not running":"Ai Image Generator is not running",
+    "ET":"ET.",
+    "Generate failed":"Generate failed",
+    "Done":"Done"
 }

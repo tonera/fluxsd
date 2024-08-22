@@ -56,6 +56,7 @@ class AtzProgress implements ShouldQueue
                     'negative_prompt' => $this->task->negative_prompt,
                     'image_num' => $this->task->image_num,
                     'reference_id' => $this->task->task_id,
+                    'sampler_name' => $this->task->sampler_name,
                     'locale' => $task_pkg->locale??'en',
                 ], JSON_PRETTY_PRINT);
             break;

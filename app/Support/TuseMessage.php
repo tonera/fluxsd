@@ -58,7 +58,7 @@ class TuseMessage{
                     $package = [
                         'message_type' => 'ephemeral',//ephemeral
                         'progress' => '30%',
-                        'progress_label' => __('预计剩余时间').$execTime, 
+                        'progress_label' => __('ET').$execTime, 
                         'execTime' => $execTime,
                     ];
                 }else{
@@ -66,7 +66,7 @@ class TuseMessage{
                     $package = [
                         'message_type' => 'ephemeral',//ephemeral
                         'progress' => '80%',
-                        'progress_label' => __('预计剩余时间').$execTime, 
+                        'progress_label' => __('ET').$execTime, 
                         'execTime' => $execTime,
                         'base64' => $this->message['base64']??null,
                     ];
@@ -80,8 +80,8 @@ class TuseMessage{
                 $package = [
                     'message_type' => 'failed',
                     'progress' => '0%',
-                    'progress_label' => __('创作失败'),
-                    'msg' => $this->message['msg']??__('创作失败'),
+                    'progress_label' => __('Generate failed'),
+                    'msg' => $this->message['msg']??__('Generate failed'),
                 ];
                 $this->taskStatus = GlobalCode::TASK_FAILED;
                 break;
@@ -90,7 +90,7 @@ class TuseMessage{
                 $package = [
                     'message_type' => 'standing',
                     'progress' => '100%',
-                    'progress_label' => __('已完成'),
+                    'progress_label' => __('Done'),
                     'execTime' => $execTime,
                 ];
                 $this->taskStatus = GlobalCode::TASK_SUCCESS;
