@@ -35,12 +35,13 @@ class AtzProgress implements ShouldQueue
 
     public function handle(): void
     {
+        $task_pkg = json_decode($this->task->task_pkg);
+        $storage = (isset($task_pkg->locale) && $task_pkg->locale == 'zh')?'oss':'s3';
         $access_url = Common::getAccessUrl($this->task->storage);
         $api = '';
         switch($this->task->act){
             case 'MK':
                 $api = '/v1/generate';
-                $task_pkg = json_decode($this->task->task_pkg);
                 $body = json_encode([
                     'prompt' => $this->task->prompt_en,
                     'negative_prompt' => $this->task->negative_prompt_en??'',
@@ -57,7 +58,7 @@ class AtzProgress implements ShouldQueue
                     'image_num' => $this->task->image_num,
                     'reference_id' => $this->task->task_id,
                     'sampler_name' => $this->task->sampler_name,
-                    'locale' => $task_pkg->locale??'en',
+                    'storage' => $storage,
                 ], JSON_PRETTY_PRINT);
             break;
             case 'RBG':
@@ -66,6 +67,7 @@ class AtzProgress implements ShouldQueue
                     'init_img_path' => base64_encode(file_get_contents($access_url.$this->task->init_img_path)),
                     // 'init_img_path' => $access_url.$this->task->init_img_path,
                     'reference_id' => $this->task->task_id,
+                    'storage' => $storage,
                 ], JSON_PRETTY_PRINT);
                 break;
             case 'SR':
@@ -76,6 +78,7 @@ class AtzProgress implements ShouldQueue
                     // 'init_img_path' => $access_url.$this->task->init_img_path,
                     'reference_id' => $this->task->task_id,
                     'upscale' => $task_pkg['upscale']??2,
+                    'storage' => $storage,
                 ], JSON_PRETTY_PRINT);
                 break;
             case 'FS':
@@ -87,6 +90,7 @@ class AtzProgress implements ShouldQueue
                     'image_file2' => base64_encode(file_get_contents($access_url.$this->task->image_file2)),
                     'face_enhance' => $task_pkg['face_enhance']??'yes',
                     'reference_id' => $this->task->task_id,
+                    'storage' => $storage,
                 ], JSON_PRETTY_PRINT);
                 Alogd::write('AtzProgress:init url=', $access_url.$this->task->init_img_path);
                 break;

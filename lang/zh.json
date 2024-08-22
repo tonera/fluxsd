@@ -211,7 +211,7 @@
     "Not found the download url":"没有发现可下载的链接",
     "download_notice":"请将下载的模型复制到以下目录：",
     "Ai Image Generator is not running":"AI图片生成器没有配置或者没有运行",
-    "ET":"预计剩余时间",
+    "ET":"预计剩余时间:",
     "Generate failed":"创作失败",
     "Done":"已完成"
 }

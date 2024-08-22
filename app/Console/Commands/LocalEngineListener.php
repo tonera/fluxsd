@@ -16,6 +16,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\App;
 
 class LocalEngineListener extends Command
 {
@@ -37,6 +38,7 @@ class LocalEngineListener extends Command
      * php .\artisan php artisan reverb:start --host="0.0.0.0" --port=8080 --debug
      */
      public function handle(){
+        App::setlocale(env('APP_LOCALE'));
         $i = 0;
         $this->redis = Redis::connection();
         while(true){
@@ -68,7 +70,7 @@ class LocalEngineListener extends Command
             $task_id = $message['task_id']??'';
             $message_status = $message['status']??'';
             Alogd::write("LocalEngineListener", "Get message from redis, task_id={$task_id} status={$message_status}", $this->debug);
-            
+            // Alogd::write("LocalEngineListener", $package, $this->debug);
             if(isset($message['task_owner']) && $message['task_owner'] == 'tuse'){
                 $this->forward($message);
             }else{
