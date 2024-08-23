@@ -108,15 +108,15 @@ class UnitRequest{
             case 'APT':
             case 'generate':
                 //size limit
-                $maxSizeLimit = 1536;
-                if($this->width > $maxSizeLimit || $this->height > $maxSizeLimit){
-                    $maxSize = $this->width > $this->height ? $this->width  : $this->height ;
-                    $scaleRate = $maxSize/$maxSizeLimit;
-                    $this->width = intval($this->width /$scaleRate);
-                    $this->height = intval($this->height /$scaleRate);
-                    $this->width = $this->width - $this->width%64;
-                    $this->height = $this->height - $this->height%64;
-                }
+                // $maxSizeLimit = 1536;
+                // if($this->width > $maxSizeLimit || $this->height > $maxSizeLimit){
+                //     $maxSize = $this->width > $this->height ? $this->width  : $this->height ;
+                //     $scaleRate = $maxSize/$maxSizeLimit;
+                //     $this->width = intval($this->width /$scaleRate);
+                //     $this->height = intval($this->height /$scaleRate);
+                //     $this->width = $this->width - $this->width%64;
+                //     $this->height = $this->height - $this->height%64;
+                // }
                 $rules = [
                     'engine' => ['required', Rule::in(GlobalCode::getEngingList())],
                     'prompt'=>'required|max:500',
@@ -310,6 +310,9 @@ class UnitRequest{
             }
         }
 
+        $radio = config('aspects.sdratio');
+        $this->width = $radio[$this->asp_id]['width'];
+        $this->height = $radio[$this->asp_id]['height'];
         if(!in_array($this->model_version, CON_SDXL_TAGS)){
             $size = Helper::getLargestEightMultiple($this->width, $this->height , $this->base_size);
             $this->width  = $size['width'];

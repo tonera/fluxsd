@@ -23,8 +23,7 @@ import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 window.Pusher = Pusher;
 const pageVar = usePage();
-
-const props = defineProps(['sdratio', 'omratio','token','omSamplers','lcSamplers','sdSamplers','engines']);
+const props = defineProps(['sdratio','token','omSamplers','lcSamplers','sdSamplers','engines']);
 const isAdvance = ref(false);
 const isNiji = ref(false);
 const hasNiji = ref(false);
@@ -236,7 +235,7 @@ function setEngine(engine){
     switch(engine){
         case 'mj':
             hasNiji.value = true;
-            aspectRatio.value = props.omratio;
+            aspectRatio.value = props.sdratio;
             engineConfig.value = store.mjConfig;
             params.image_num = 1;
         break;
@@ -319,7 +318,7 @@ function settime(val){
             isRunning.value = false;
             showTopSnackbar(trans('Over time'),'info');
         }
-        console.log('over time 60d');
+        // console.log('over time 60s');
         etaTimeNotice.value = 'Unknown';
     }else{
         // console.log('et:', taskRunTime,'s');
@@ -351,7 +350,7 @@ async function btnAction(item){
 
 
 function callback(res){
-    console.log('ws call back',res, waitingImageNum.value);
+    console.log('ws call back',res.message_type, waitingImageNum.value);
     if(res.message_type == 'standing'){
         history.value.unshift(res);
         work_image.value = res;
