@@ -493,7 +493,7 @@ class StabilityService {
             "accept" => "application/json"
         ];
         try {
-            $response = $client->post($url, ['headers' => $headers, 'body' => $body, 'debug' => true]);
+            $response = $client->post($url, ['headers' => $headers, 'body' => $body, 'debug' => false]);
             // Check the response status code
             if ($response->getStatusCode() == 200) {
                 $res = $response->getBody()->getContents();
@@ -515,7 +515,7 @@ class StabilityService {
                 throw new Exception('Failed to generate image.');
             }
         } catch (RequestException $e) {
-            echo "Error: " . $e->getMessage();
+            // echo "Error: " . $e->getMessage();
             throw new Exception($e->getResponse()->getReasonPhrase());
             // var_dump($e->getResponse()->getReasonPhrase());
             
