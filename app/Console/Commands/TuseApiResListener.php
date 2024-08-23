@@ -33,7 +33,7 @@ class TuseApiResListener extends Command
         $token = Common::getConfigKeyValue('engine.atz.token');
         if(!$token){
             echo "Token is null\n";
-            sleep(3);
+            sleep(10);
             return;
         }
         echo env('FLUXSD_API_WS_RES')."/?token={$token}\n";

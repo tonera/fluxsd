@@ -15,9 +15,14 @@ import TopSnackbar from '../../Components/TopSnackbar.vue';
 import OperationButton from '../../Components/OperationButton.vue';
 import { trans } from 'laravel-vue-i18n';
 import {store} from '../../mock.js';
-import {router } from '@inertiajs/vue3';
+import {router,usePage } from '@inertiajs/vue3';
 import { onMounted, reactive, ref } from 'vue';
 import {aiHttpRequest, editImage, showTopSnackbar, getAccessKey, buildSubmitParams,checkSubmitParams, getSrc} from '../../network';
+
+import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
+window.Pusher = Pusher;
+const pageVar = usePage();
 
 const props = defineProps(['sdratio', 'omratio','token','omSamplers','lcSamplers','sdSamplers','engines']);
 const isAdvance = ref(false);
@@ -92,6 +97,17 @@ onMounted(() => {
     getHistoryList(historyPage.value);
     samplers.value = getSamplers(params.engine);
     params.sampler_name = samplers.value.length > 0 ? samplers.value[0].val: null;
+
+    window.Echo = new Echo({
+        broadcaster: 'reverb',
+        key: import.meta.env.VITE_REVERB_APP_KEY,
+        // wsHost: import.meta.env.VITE_REVERB_HOST,
+        wsHost: pageVar.props.reverbHost,
+        wsPort: import.meta.env.VITE_REVERB_PORT ?? 80,
+        wssPort: import.meta.env.VITE_REVERB_PORT ?? 443,
+        forceTLS: (import.meta.env.VITE_REVERB_SCHEME ?? 'https') === 'https',
+        enabledTransports: ['ws', 'wss'],
+    });
 });
 
 function getSamplers(engine){

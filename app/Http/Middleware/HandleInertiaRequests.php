@@ -45,6 +45,7 @@ class HandleInertiaRequests extends Middleware
             'locale' => Session::get('locale')??'en_US',
             'languages' => config('languages'),
             'oddStatus' => Cache::get($cacheKey) == 'online',
+            'reverbHost' => env('REVERB_HOST')
         ]);
     }
 }
