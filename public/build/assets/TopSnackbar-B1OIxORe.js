@@ -1,1 +1,0 @@
-import{_ as e}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{o,d as c}from"./app-lo3yCkmC.js";const r={},s={id:"snackbar"};function t(n,a){return o(),c("div",s,"Some text some message..")}const i=e(r,[["render",t]]);export{i as T};
