@@ -453,6 +453,75 @@ class StabilityService {
         }
     }
 
+    public static function sd3(array $input){
+        $url = 'https://api.stability.ai/v2beta/stable-image/generate/sd3';
+        $client = new Client();
+        $ratioConfig = config('aspects.sdratio');
+        $aspect_ratio = $ratioConfig[$input['asp_id']];//16:9 1:1 21:9 2:3 3:2 4:5 5:4 9:16 9:21
+        $post = [
+            [
+                'name' => 'prompt',
+                'contents' => $input['prompt_en'],
+            ],
+            ['name' => 'model','contents' => 'sd3-large-turbo'],//sd3-large sd3-large-turbo sd3-medium sd3-large-turbo dont support negative_prompt
+            ['name' => 'seed','contents' => $input['seed']],
+            ['name' => 'output_format','contents' => $input['file_type']],
+        ];
+        //init_img_path = base64 img
+        if(isset($input['init_img_path']) && $input['init_img_path']){
+            //txt2img
+            $post[] = ['name' => 'strength','contents' => $input['denoising_strength']];
+            $post[] = [
+                'name' => 'image',
+                // 'contents' => fopen($input['init_img_path'], 'r'),
+                'contents' => base64_decode($input['init_img_path']),
+                'filename' => 'uppload.jpeg',
+                'headers' => [
+                    'Content-Type' => 'image/jpeg', // Change this to the appropriate MIME type
+                ],
+            ];
+            $post[] = ['name' => 'mode','contents' => 'image-to-image'];
+        }else{
+            $post[] = ['name' => 'aspect_ratio','contents' => $aspect_ratio['label']];
+            $post[] = ['name' => 'mode','contents' => 'text-to-image'];
+        }
+       
+        $body = new MultipartStream($post);
+        $headers = [
+            'Content-Type' => 'multipart/form-data; boundary=' . $body->getBoundary(),
+            'authorization' =>  'Bearer '.Common::getConfigKeyValue('engine.sd.token'),
+            "accept" => "application/json"
+        ];
+        try {
+            $response = $client->post($url, ['headers' => $headers, 'body' => $body, 'debug' => true]);
+            // Check the response status code
+            if ($response->getStatusCode() == 200) {
+                $res = $response->getBody()->getContents();
+                $decode = json_decode($res);
+                if($decode && $decode->finish_reason == 'SUCCESS'){
+                    return [
+                        'code' => GlobalCode::SUCCESS,
+                        'data' => [
+                            'base64' => $decode->image,
+                            'finish_reason' => $decode->finish_reason,
+                            'seed' => $decode->seed,
+                        ],
+                    ];
+                }else{
+                    throw new Exception('Failed to generate image.');
+                }
+            } else {
+                // echo 'Failed to upload file.';
+                throw new Exception('Failed to generate image.');
+            }
+        } catch (RequestException $e) {
+            echo "Error: " . $e->getMessage();
+            throw new Exception($e->getResponse()->getReasonPhrase());
+            // var_dump($e->getResponse()->getReasonPhrase());
+            
+        }
+    }
+
 }
 
 ?>

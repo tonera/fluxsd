@@ -24,6 +24,13 @@ class LocalTask{
             $redis = Redis::connection();
             $channel = GlobalCode::CHANNEL_LIST[$input['job_type']];
 
+            if(isset($input['init_img_path']) && $input['init_img_path']){
+                $input['init_img_path'] = Common::getAccessUrl($req->storage).$input['init_img_path'];
+            }
+            if(isset($input['image_file2']) && $input['image_file2']){
+                $input['image_file2'] = Common::getAccessUrl($req->storage).$input['image_file2'];
+            }
+
             $list = $req->splitPackage($input, 1);
             foreach($list as $idx => $val){
                 if($input['image_num'] > 1){

@@ -94,6 +94,7 @@ class TaskController extends Controller
             if(isset($taskModel['code']) && $taskModel['code'] === GlobalCode::SUCCESS){
                 $task = $taskModel['data'];
                 $execTime = Helper::getExecTime($task);
+                $execTime = $execTime <= 0 ? 30 : $execTime;
                 // Alogd::write("TaskController", "execTime = {$execTime} s");
                 return (new TaskResource($task))
                     ->additional([

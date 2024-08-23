@@ -50,7 +50,7 @@ class SdProgress implements ShouldQueue
     public function handle(): void
     {
         $startTime = time();
-        Alogd::write(GlobalCode::SD, '开始执行SD-Job任务');
+        Alogd::write(GlobalCode::SD, 'Start SD-job');
         if(!$this->task){
             Alogd::write(GlobalCode::SD, "Task is not found.");
             $this->fail();
@@ -58,13 +58,13 @@ class SdProgress implements ShouldQueue
         $task = $this->task;
         $exParams = json_decode($task->task_pkg, true);
         $execTime = Helper::getExecTime($task);
-        $exTime = ($execTime > 0 && $execTime < 500) ? $execTime."秒" : '未知';
+        $exTime = ($execTime > 0 && $execTime < 500) ? $execTime."s" : 'Unknown';
 
         if($task->work_status == GlobalCode::TASK_SUCCESS){
             $taskImage = TaskImage::where('task_id', $task->task_id)->first();
             $tm = new TuseMessage(['status' => 'success']);
             $message = $tm->package('standing', 0, $taskImage);
-            Alogd::write(GlobalCode::SD, "任务已完成状态,直接返回消息:{$task->task_id}");
+            Alogd::write(GlobalCode::SD, "This task has finished, return:{$task->task_id}");
             ReverbClient::sendMessage($message);
             return;
         }
@@ -83,22 +83,25 @@ class SdProgress implements ShouldQueue
         
             
             if($req->generate_type == 'txt2img'){
-                Alogd::write(GlobalCode::SD, '文生图:开始调用接口');
+                Alogd::write(GlobalCode::SD, 'Text to image: call sd api');
                 if(isset($exParams['lora_scale'])){
                     $input['lora_scale'] = $exParams['lora_scale'];
                 }
-                $formatRes = StabilityService::txt2img('', $input);
-                
+                if($req->lora_hash_id == 'c02e4621bc973ab1583f2bf83b21cec0'){
+                    Alogd::write(GlobalCode::SD, 'Text to image:SD3');
+                    $formatRes = StabilityService::sd3($input);
+                }else{
+                    $formatRes = StabilityService::txt2img('', $input);
+                }
             }else{
                 if($req->initImgBtyes){
                     $content = $req->initImgBtyes;
                 }else{
                     $client = new Client();
-                    
                     try{
                         $content = $client->get($input['access_url'].$input['init_img_path'])->getBody()->getContents();
                     }catch(Exception $e){
-                        Alogd::write(GlobalCode::SD, 'Om-AI创作图生图失败，原图片无法获取到');
+                        Alogd::write(GlobalCode::SD, 'Generate failed, origin image cant download');
                         $tm = new TuseMessage(['status' => 'failed' , 'msg' => $e->getMessage()]);
                         $message = $tm->package('failed', 0, null, $task);
                         ReverbClient::sendMessage($message);
@@ -106,15 +109,21 @@ class SdProgress implements ShouldQueue
                         return;
                     }
                 }
-                
-                $img = new UnitImage();
-                $img->loadImage($content);
-                $sdContent = $img->resizeSd(config('aspects.sdratio'),'jpeg',80);
-                $input['init_image'] = $sdContent ;
-                $formatRes = StabilityService::img2img('', $input);
+
+                if($req->lora_hash_id == 'c02e4621bc973ab1583f2bf83b21cec0'){
+                    Alogd::write(GlobalCode::SD, 'Image to image:SD3');
+                    $input['init_img_path'] = base64_encode($content);
+                    $formatRes = StabilityService::sd3($input);
+                }else{
+                    $img = new UnitImage();
+                    $img->loadImage($content);
+                    $sdContent = $img->resizeSd(config('aspects.sdratio'),'jpeg',80);
+                    $input['init_image'] = $sdContent ;
+                    $formatRes = StabilityService::img2img('', $input);
+                }
             }
             if($formatRes['code'] === GlobalCode::SUCCESS){
-                Alogd::write(GlobalCode::SD, 'SD-AI创作接口返回成功,图片大小'.strlen($formatRes['data']['base64']));
+                Alogd::write(GlobalCode::SD, 'SD-AI generate success, size='.strlen($formatRes['data']['base64']));
                 $imageBytes = base64_decode($formatRes['data']['base64']);
                 $fileType = $task->act == 'RBG'?'png':'jpeg';
                 $objects = Helper::getObjectName('user_res', $fileType,'storage');
@@ -134,14 +143,14 @@ class SdProgress implements ShouldQueue
                 
                 Helper::setExecTime($task);
             }else{
-                Alogd::write(GlobalCode::SD, '调用生成SD-AI绘画处理返回错误:code='.$formatRes['code'].' msg='.$formatRes['msg']);
+                Alogd::write(GlobalCode::SD, 'Error:code='.$formatRes['code'].' msg='.$formatRes['msg']);
                 $tm = new TuseMessage(['status' => 'failed' , 'msg' => $formatRes['msg']]);
                 $message = $tm->package('failed', 0, null, $task);
                 ReverbClient::sendMessage($message);
             }
         }catch(Exception $e){
             //send failed
-            Alogd::write(GlobalCode::SD, 'SD绘画失败:msg ='.$e->getMessage());
+            Alogd::write(GlobalCode::SD, 'Failed:msg ='.$e->getMessage());
             $tm = new TuseMessage(['status' => 'failed' , 'msg' => $e->getMessage()]);
             $message = $tm->package('failed', 0, null, $task);
             ReverbClient::sendMessage($message);

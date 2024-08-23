@@ -120,7 +120,7 @@ class UnitRequest{
                 $rules = [
                     'engine' => ['required', Rule::in(GlobalCode::getEngingList())],
                     'prompt'=>'required|max:500',
-                    // 'asp_id'=>'required|integer|min:0|max:10',
+                    'asp_id'=>'required|integer|min:0|max:10',
                     'seed'=>'required|integer|min:-1|max:4294967295',
                     
                     'steps'=>'required|integer|min:1,max:50',
@@ -410,6 +410,7 @@ class UnitRequest{
                         'lora_prompt' =>  $this->lora_prompt,
                         'model_hash_id' =>  $this->model_hash_id,
                         'lora_hash_id' =>  $this->lora_hash_id,
+                        'asp_id' => $this->asp_id,
                     ]);
                 }
                 break;

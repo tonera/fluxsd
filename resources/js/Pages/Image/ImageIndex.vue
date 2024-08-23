@@ -390,7 +390,7 @@ function getInput(){
                         <TSSelectorModel v-if="['lc','atz','sd'].includes(params.engine)" :name="'lora_name'" :label="trans('lora')" :engine="params.engine" :init="'lora'" @tsComCallback="tsComCallback" 
                         :base="modelBaseModel"
                         :def="params.lora_name"></TSSelectorModel>
-                        <div v-show="params.lora_hash_id!=null" class="flex items-center justify-between gap-2">
+                        <div v-show="params.lora_hash_id!=null && ['lc','atz'].includes(params.engine)" class="flex items-center justify-between gap-2">
                             <input type="range" min="0" max="1" step="0.1" v-model="params.lora_scale" class="range range-xs range-success" />
                             <label class="w-16 whitespace-nowrap text-xs text-right">{{trans('scale')}}:</label>
                             <div class="badge badge-neutral badge-sm w-10">{{params.lora_scale}}</div>
