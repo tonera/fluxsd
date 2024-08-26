@@ -68,7 +68,7 @@ Open the url in your browser:[http://{Your ip address}:8000](http://localhost:80
 The methods for each operating system are slightly different, please search them yourself.
 
 #### 2. Download the FluxSD package and unzip it
-Download [AI Image Generator https://cdn.tuse.ai/fluxsd/generator.zip](https://cdn.tuse.ai/fluxsd/generator.zip) and unzip it.
+Download [AI Image Generator https://github.com/tonera/fluxsd/releases/download/v1.0.0/generator.zip](https://github.com/tonera/fluxsd/releases/download/v1.0.0/generator.zip) and unzip it.
 
 Enter the unzipped directory (Windows OS, open the terminal of Powershell)
 
