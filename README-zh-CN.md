@@ -38,6 +38,10 @@ APP_HOST={你的计算机IP地址}
 ```shell
 docker-compose up
 ```
+注：Windows
+```shell
+docker-compose.exe up
+```
 #### 4. 使用
 在浏览器地址栏输入:[http://{你的计算机IP地址}:8000](http://localhost:8000) 访问Fluxsd系统。
 
@@ -53,7 +57,7 @@ docker-compose up
 必须是python3.11，各种操作系统方法略有不同，请自行查找。
 
 #### 2. 下载FluxSD安装包并解压缩
-下载生成器安装包:[AI图片生成器](https://cdn.tuse.ai/fluxsd/generator.zip)并解压缩。
+下载生成器安装包:[AI图片生成器](https://github.com/tonera/fluxsd/releases/download/v1.0.0/generator.zip)并解压缩。
 进入解压后的目录，(Windows系统，打开命令行或者Powershell)
 ```
 cd generator
