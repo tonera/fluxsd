@@ -131,7 +131,7 @@ var gpuInfo = getGPUInfo();
                 </a>
             </div>
             <div class="">
-                <a class="link link-secondary no-underline stat-title font-bold" href="https://fluxsd.com/docs" target="_blank">帮助</a>
+                <a class="link link-secondary no-underline stat-title font-bold" href="https://fluxsd.com/docs" target="_blank">{{trans('Help')}}</a>
             </div>
         </div>
 

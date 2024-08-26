@@ -213,5 +213,6 @@
     "Ai Image Generator is not running":"AI图片生成器没有配置或者没有运行",
     "ET":"预计剩余时间:",
     "Generate failed":"创作失败",
-    "Done":"已完成"
+    "Done":"已完成",
+    "Help":"帮助"
 }
