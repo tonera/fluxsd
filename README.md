@@ -44,9 +44,15 @@ Copy .env.example to .env. Open .env and update APP_HOST option:
 APP_HOST={Your ip address}
 ```
 #### 3. Startup
+Linux or Mac
 ```shell
 docker-compose up
 ```
+Windows
+```shell
+docker-compose.exe up
+```
+
 #### 4. Usage
 Open the url in your browser:[http://{Your ip address}:8000](http://localhost:8000)
 
@@ -109,7 +115,7 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 Open Fluxsd in the browser, click the configuration menu, copy: Configuration -> Image Model -> Local tab: Image Generator Configuration File, copy the contents of the text area and Paste it into the mk_config.ini file in the Generator's config folder.
 
-<img src="assets/mk_config.png" width = "500" align=center />
+<img src="assets/mk_config.jpg" width = "500" align=center />
 
 #### 7. Startup
 ```python
