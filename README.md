@@ -124,10 +124,10 @@ python Service_atz2.py base
 
 ## Documentation
 
-For more detailed documents, please refer to the official website [Full document](https://fluxsd.com/docs/cn/overview).
-- [How to call Midjourney api via Discord api](https://fluxsd.com/docs/cn/midjourney)
-- [How to obtain a token of together.ai to call Llama3.1 or others api](https://fluxsd.com/docs/cn/together)
-- [How to obtain a token of Stability.ai](https://fluxsd.com/docs/cn/sd)
+For more detailed documents, please refer to the official website [Full document](https://fluxsd.com/docs/en/overview).
+- [How to call Midjourney api via Discord api](https://fluxsd.com/docs/en/midjourney)
+- [How to obtain a token of together.ai to call Llama3.1 or others api](https://fluxsd.com/docs/en/together)
+- [How to obtain a token of Stability.ai](https://fluxsd.com/docs/en/sd)
 - ...
 
 ## Credits
@@ -145,4 +145,4 @@ Licenses for borrowed code:
 
 ## License
 
-Please refer [License](https://fluxsd.com/docs/cn/license)
+Please refer [License](https://fluxsd.com/docs/en/license)
