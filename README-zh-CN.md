@@ -57,7 +57,7 @@ docker-compose.exe up
 必须是python3.11，各种操作系统方法略有不同，请自行查找。
 
 #### 2. 下载FluxSD安装包并解压缩
-下载生成器安装包:[AI图片生成器](https://github.com/tonera/fluxsd/releases/download/v1.0.0/generator.zip)并解压缩。
+在 https://github.com/tonera/fluxsd/releases 下载最新的生成器安装包:[generator.zip](https://github.com/tonera/fluxsd/releases)并解压缩。
 进入解压后的目录，(Windows系统，打开命令行或者Powershell)
 ```
 cd generator
