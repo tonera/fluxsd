@@ -142,7 +142,7 @@ async function getHistoryList(page){
 }
 
 function tsComCallback(name, value){
-    // console.log("Com callback: name =",name, "value =", value);
+    console.log("Com callback: name =",name, "value =", value);
     switch(name){
         case 'isAdvance':
             isAdvance.value = value;
@@ -192,6 +192,10 @@ function tsComCallback(name, value){
         case 'prompt':
             params[name] = value;
             params.prompt_en = null;
+            break;
+        case 'negative_prompt':
+            params[name] = value;
+            params.negative_prompt_en = null;
             break;
         default:
             params[name] = value;

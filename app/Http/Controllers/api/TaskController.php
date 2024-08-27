@@ -55,7 +55,7 @@ class TaskController extends Controller
             //delete -- if mj
             $arr = explode("--", $req->prompt_en);
             $promptEn = $arr[0];
-            $negativePromptEn = $promptEn??'';
+            $negativePromptEn = $req->negative_prompt??'';
         }else{
             if(Helper::isEnglish($req->prompt) || Helper::isEnglish($req->negative_prompt)){
                 $promptEn = $req->prompt;
